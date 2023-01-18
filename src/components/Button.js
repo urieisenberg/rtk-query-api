@@ -36,3 +36,19 @@ export const Button = ({
     </button>
   );
 };
+
+Button.propTypes = {
+  checkVariationVal: ({ primary, secondary, success, danger, warning }) => {
+    const count =
+      Number(!!primary) +
+      Number(!!secondary) +
+      Number(!!success) +
+      Number(!!danger) +
+      Number(!!warning);
+
+    if (count > 1)
+      return new Error(
+        'Only one of primary, secondary, success, danger, warning can be true'
+      );
+  },
+};
