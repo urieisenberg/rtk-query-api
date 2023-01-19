@@ -12,7 +12,11 @@ export const Skeleton = ({ times }) => {
     'animate-shimmer',
     'absolute',
     'inset-0',
-    '-translate-x-full'
+    '-translate-x-full',
+    'bg-gradient-to-r',
+    'from-gray-200',
+    'via-white',
+    'to-gray-200'
   );
 
   const boxes = Array(times)
