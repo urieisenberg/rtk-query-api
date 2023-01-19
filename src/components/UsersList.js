@@ -4,6 +4,7 @@ import { useThunk } from '../hooks/useThunk';
 import { fetchUsers, addUser } from '../store';
 import { Skeleton } from './Skeleton';
 import { Button } from './Button';
+import { UsersListItem } from './UsersListItem';
 
 export const UsersList = () => {
   const [doFetchUsers, isLoadingUsers, loadingUsersError] =
@@ -22,13 +23,7 @@ export const UsersList = () => {
 
   if (loadingUsersError) content = <div>Something went wrong</div>;
   else
-    content = data.map((user) => (
-      <div key={user.id} className="mb-2 border rounded">
-        <div className="flex p-2 justify-between items-center cursor-pointer">
-          {user.name}
-        </div>
-      </div>
-    ));
+    content = data.map((user) => <UsersListItem key={user.id} user={user} />);
 
   return (
     <div>
