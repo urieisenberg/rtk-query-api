@@ -23,6 +23,14 @@ export const albumsApi = createApi({
           { type: 'Album', id: user.id },
         ],
       }),
+      deleteAlbum: builder.mutation({
+        query: (album) => {
+          return {
+            url: `/albums/${album.id}`,
+            method: 'DELETE',
+          };
+        },
+      }),
       fetchAlbums: builder.query({
         query: (user) => {
           return {
