@@ -34,7 +34,7 @@ export const Button = ({
   );
 
   return (
-    <button className={classes} {...rest} >
+    <button className={classes} {...rest} disabled={loading}>
       {children}
     </button>
   );
