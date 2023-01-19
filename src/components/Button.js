@@ -35,7 +35,7 @@ export const Button = ({
 
   return (
     <button className={classes} {...rest} disabled={loading}>
-      {children}
+      {loading ? <GoSync className="animate-spin" /> : children}
     </button>
   );
 };
