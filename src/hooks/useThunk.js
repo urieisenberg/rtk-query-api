@@ -6,10 +6,10 @@ export function useThunk(thunk) {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  const runThunk = useCallback(() => {
+  const runThunk = useCallback((arg) => {
     setIsLoading(true);
     dispatch(
-      thunk()
+      thunk(arg)
         .unwrap() // Unwrap the promise to get the actual data from the fulfilled action payload
         .catch((error) => setError(error.message)) // Catch the error from the rejected action payload
         .finally(() => setIsLoading(false))
