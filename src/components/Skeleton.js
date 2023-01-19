@@ -8,7 +8,12 @@ export const Skeleton = ({ times }) => {
     'rounded',
     'mb-2.5'
   );
-  const innerClassNames = classNames();
+  const innerClassNames = classNames(
+    'animate-shimmer',
+    'absolute',
+    'inset-0',
+    '-translate-x-full'
+  );
 
   const boxes = Array(times)
     .fill(0)
