@@ -11,7 +11,7 @@ export const UsersList = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  if (isLoading) return <Skeleton times={7} />;
+  if (isLoading) return <Skeleton times={7} className="h-10 w-full" />;
 
   if (error) return <div>Error</div>;
 
