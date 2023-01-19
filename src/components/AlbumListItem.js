@@ -2,7 +2,7 @@ import { useDeleteAlbumMutation } from '../store';
 import { GoTrashcan } from 'react-icons/go';
 import { Button } from './Button';
 import { ExpandablePanel } from './ExpandablePanel';
-import { PhotoList } from './Photolist';
+import { PhotoList } from './PhotoList';
 
 export const AlbumListItem = ({ album }) => {
   const [deleteAlbum, { isLoading: isDeleting }] = useDeleteAlbumMutation();
