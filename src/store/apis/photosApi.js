@@ -41,3 +41,8 @@ export const photosApi = createApi({
   },
 });
 
+export const {
+  useFetchPhotosQuery,
+  useAddPhotoMutation,
+  useDeletePhotoMutation,
+} = photosApi;
