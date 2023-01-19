@@ -5,7 +5,7 @@ import { Button } from './Button';
 
 export const AlbumsList = ({ user }) => {
   const { data, error, isLoading } = useFetchAlbumsQuery(user);
-  const [addAlbum, results] = useAddAlubmMutation();
+  const [addAlbum, { isLoading: isAdding }] = useAddAlubmMutation();
 
   let content;
   if (isLoading) content = <Skeleton times={3} />;
@@ -24,8 +24,8 @@ export const AlbumsList = ({ user }) => {
     <>
       <div>
         Albums for {user.name}
-        <Button onClick={onAddAlbum}>
-          Add Album
+        <Button onClick={onAddAlbum} loading={isAdding}>
+          Add album
         </Button>
       </div>
       <div>{content}</div>
