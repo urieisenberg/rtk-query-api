@@ -7,19 +7,23 @@ import { Button } from './Button';
 export const UsersList = () => {
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [loadingUsersError, setLoadingUsersError] = useState(null);
-  
+
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useSelector((state) => state.users);
+  const { data } = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    setIsLoadingUsers(true);
+    dispatch(fetchUsers())
+      .unwrap() // Unwrap the promise to get the actual data from the fulfilled action payload
+      .catch((error) => setLoadingUsersError(error.message)) // Catch the error from the rejected action payload
+      .finally(() => setIsLoadingUsers(false)); // This will run regardless of the promise being fulfilled or rejected
   }, [dispatch]);
 
   const onAddUser = () => dispatch(addUser());
 
-  if (isLoading) return <Skeleton times={7} className="h-10 w-full" />;
+  if (isLoadingUsers) return <Skeleton times={7} className="h-10 w-full" />;
 
-  if (error) return <div>{error.message}</div>;
+  if (loadingUsersError) return <div>{loadingUsersError}</div>;
 
   const renderedUsers = data.map((user) => (
     <div key={user.id} className="mb-2 border rounded">
