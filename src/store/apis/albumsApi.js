@@ -19,7 +19,9 @@ export const albumsApi = createApi({
             },
           };
         },
-        invalidatesTags: ['Album'],
+        invalidatesTags: (result, error, user) => [
+          { type: 'Album', id: user.id },
+        ],
       }),
       fetchAlbums: builder.query({
         query: (user) => {
@@ -29,7 +31,7 @@ export const albumsApi = createApi({
             method: 'GET',
           };
         },
-        providesTags: ['Album'],
+        providesTags: (result, error, user) => [{ type: 'Album', id: user.id }],
       }),
     };
   },
