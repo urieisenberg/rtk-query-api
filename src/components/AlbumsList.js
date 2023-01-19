@@ -4,8 +4,8 @@ import {
   useDeleteAlbumMutation,
 } from '../store';
 import { Skeleton } from './Skeleton';
-import { ExpandablePanel } from './ExpandablePanel';
 import { Button } from './Button';
+import { AlbumListItem } from './AlbumListItem';
 
 export const AlbumsList = ({ user }) => {
   const { data, error, isLoading } = useFetchAlbumsQuery(user);
@@ -18,9 +18,7 @@ export const AlbumsList = ({ user }) => {
   else if (data.length === 0) content = <div>No albums found</div>;
   else
     content = data.map((album) => (
-      <ExpandablePanel key={album.id} header={album.title}>
-        list of photos
-      </ExpandablePanel>
+      <AlbumListItem key={album.id} album={album} />
     ));
 
   const onAddAlbum = () => addAlbum(user);
