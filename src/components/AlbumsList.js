@@ -6,7 +6,7 @@ import { Button } from './Button';
 export const AlbumsList = ({ user }) => {
   const { data, error, isLoading } = useFetchAlbumsQuery(user);
   const [addAlbum, results] = useAddAlubmMutation();
-  
+
   let content;
   if (isLoading) content = <Skeleton times={3} />;
   else if (error) content = <div>Something went wrong</div>;
@@ -18,9 +18,16 @@ export const AlbumsList = ({ user }) => {
       </ExpandablePanel>
     ));
 
+  const onAddAlbum = () => addAlbum(user);
+
   return (
     <>
-      <div>Albums for {user.name}</div>
+      <div>
+        Albums for {user.name}
+        <Button onClick={onAddAlbum}>
+          Add Album
+        </Button>
+      </div>
       <div>{content}</div>
     </>
   );
