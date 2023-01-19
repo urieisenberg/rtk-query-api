@@ -12,6 +12,8 @@ export const UsersList = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
+  const onAddUser = () => dispatch(addUser());
+
   if (isLoading) return <Skeleton times={7} className="h-10 w-full" />;
 
   if (error) return <div>Error</div>;
@@ -24,5 +26,13 @@ export const UsersList = () => {
     </div>
   ));
 
-  return <>{renderedUsers}</>;
+  return (
+    <div>
+      <div className="flex flex-row justify-between m-3">
+        <h1 className="m-2 text-xl">Users</h1>
+        <Button onClick={onAddUser}>Add User</Button>
+      </div>
+      {renderedUsers}
+    </div>
+  );
 };
