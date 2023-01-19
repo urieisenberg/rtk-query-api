@@ -7,9 +7,15 @@ const usersSlice = createSlice({
     data: [],
   },
   extraReducers(builder) {
-    builder.addCase(fetchUsers.pending);
-    builder.addCase(fetchUsers.fulfilled);
-    builder.addCase(fetchUsers.fulfilled);
+    builder.addCase(fetchUsers.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.isLoading = false;
+    });
   },
 });
 
