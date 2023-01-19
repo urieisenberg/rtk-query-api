@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 
-export const Skeleton = ({ times }) => {
+export const Skeleton = ({ times, className }) => {
   const outerClassNames = classNames(
     'relative',
     'overflow-hidden',
     'bg-gray-200',
     'rounded',
-    'mb-2.5'
+    'mb-2.5',
+    className
   );
   const innerClassNames = classNames(
     'animate-shimmer',
