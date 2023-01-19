@@ -6,15 +6,16 @@ export function useThunk(thunk) {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  const runThunk = useCallback((arg) => {
-    setIsLoading(true);
-    dispatch(
-      thunk(arg)
-        .unwrap() // Unwrap the promise to get the actual data from the fulfilled action payload
-        .catch((error) => setError(error.message)) // Catch the error from the rejected action payload
-        .finally(() => setIsLoading(false))
-    ); // This will run regardless of the promise being fulfilled or rejected
-  }, [thunk, dispatch]);
+  const runThunk = useCallback(
+    (arg) => {
+      setIsLoading(true);
+      dispatch(thunk(arg))
+        .unwrap()
+        .catch((err) => setError(err))
+        .finally(() => setIsLoading(false));
+    },
+    [dispatch, thunk]
+  );
 
-  return { isLoading, error, runThunk };
+  return [runThunk, isLoading, error];
 }
