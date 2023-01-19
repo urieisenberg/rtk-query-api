@@ -1,3 +1,4 @@
+import { useDeleteAlbumMutation } from '../store';
 import { GoTrashcan } from 'react-icons/go';
 import { Button } from './Button';
 import { ExpandablePanel } from './ExpandablePanel';
