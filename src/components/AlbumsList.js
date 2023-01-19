@@ -5,7 +5,8 @@ import { Button } from './Button';
 
 export const AlbumsList = ({ user }) => {
   const { data, error, isLoading } = useFetchAlbumsQuery(user);
-
+  const [addAlbum, results] = useAddAlubmMutation();
+  
   let content;
   if (isLoading) content = <Skeleton times={3} />;
   else if (error) content = <div>Something went wrong</div>;
