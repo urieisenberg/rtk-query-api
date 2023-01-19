@@ -11,11 +11,13 @@ export const UsersListItem = ({ user }) => {
   return (
     <div key={user.id} className="mb-2 border rounded">
       <div className="flex p-2 justify-between items-center cursor-pointer">
-        <Button loading={isLoading} onClick={onDeleteUser}>
-          <GoTrashcan />
-        </Button>
-        {error && <div> Something went wrong </div>}
-        {user.name}
+        <div className="flex flex-row items-center justify-between">
+          <Button loading={isLoading} onClick={onDeleteUser} className="mr-2">
+            <GoTrashcan />
+          </Button>
+          {error && <div> Something went wrong </div>}
+          {user.name}
+        </div>
       </div>
     </div>
   );
