@@ -1,4 +1,8 @@
-import { useFetchAlbumsQuery, useAddAlubmMutation } from '../store';
+import {
+  useFetchAlbumsQuery,
+  useAddAlubmMutation,
+  useDeleteAlbumMutation,
+} from '../store';
 import { Skeleton } from './Skeleton';
 import { ExpandablePanel } from './ExpandablePanel';
 import { Button } from './Button';
@@ -6,6 +10,7 @@ import { Button } from './Button';
 export const AlbumsList = ({ user }) => {
   const { data, error, isLoading } = useFetchAlbumsQuery(user);
   const [addAlbum, { isLoading: isAdding }] = useAddAlubmMutation();
+  const [deleteAlbum, { isLoading: isDeleting }] = useDeleteAlbumMutation();
 
   let content;
   if (isLoading) content = <Skeleton times={3} />;
