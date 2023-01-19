@@ -1,11 +1,14 @@
 import classNames from 'classnames';
 
 export const Skeleton = ({ times }) => {
-  const boxes = [];
+  const boxes = Array(times)
+    .fill(0)
+    .map((_, index) => (
+      <div
+        key={index}
 
-  for (let i = 0; i < times; i++) {
-    boxes.push(<div key={i} />);
-  }
+      />
+    ));
 
   return boxes;
 };
