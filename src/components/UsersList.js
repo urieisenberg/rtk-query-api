@@ -14,9 +14,10 @@ export const UsersList = () => {
 
   const onAddUser = () => dispatch(addUser());
 
+
   if (isLoading) return <Skeleton times={7} className="h-10 w-full" />;
 
-  if (error) return <div>Error</div>;
+  if (error) return <div>{error.message}</div>;
 
   const renderedUsers = data.map((user) => (
     <div key={user.id} className="mb-2 border rounded">
