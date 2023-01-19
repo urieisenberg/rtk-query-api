@@ -1,33 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useThunk } from '../hooks/useThunk';
 import { fetchUsers, addUser } from '../store';
 import { Skeleton } from './Skeleton';
 import { Button } from './Button';
 
 export const UsersList = () => {
-  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
-  const [loadingUsersError, setLoadingUsersError] = useState(null);
-  const [isCreatingUser, setIsCreatingUser] = useState(false);
-  const [creatingUserError, setCreatingUserError] = useState(null);
-
-  const dispatch = useDispatch();
+  const [doFetchUsers, isLoadingUsers, loadingUsersError] =
+    useThunk(fetchUsers);
+  const [doAddUser, isCreatingUser, creatingUserError] = useThunk(addUser);
   const { data } = useSelector((state) => state.users);
 
   useEffect(() => {
-    setIsLoadingUsers(true);
-    dispatch(fetchUsers())
-      .unwrap() // Unwrap the promise to get the actual data from the fulfilled action payload
-      .catch((error) => setLoadingUsersError(error.message)) // Catch the error from the rejected action payload
-      .finally(() => setIsLoadingUsers(false)); // This will run regardless of the promise being fulfilled or rejected
-  }, [dispatch]);
+    doFetchUsers();
+  }, [doFetchUsers]);
 
-  const onAddUser = () => {
-    setIsCreatingUser(true);
-    dispatch(addUser())
-      .unwrap()
-      .catch((error) => setCreatingUserError(error.message))
-      .finally(() => setIsCreatingUser(false));
-  };
+  const onAddUser = () => doAddUser();
 
   if (isLoadingUsers) return <Skeleton times={7} className="h-10 w-full" />;
 
