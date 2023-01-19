@@ -8,6 +8,18 @@ export const albumsApi = createApi({
   }),
   endpoints(builder) {
     return {
+      addAlubm: builder.mutation({
+        query: (user) => {
+          return {
+            url: '/albums',
+            method: 'POST',
+            body: {
+              userId: user.id,
+              title: faker.commerce.productName(),
+            },
+          };
+        },
+      }),
       fetchAlbums: builder.query({
         query: (user) => {
           return {
