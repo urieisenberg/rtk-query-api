@@ -22,8 +22,8 @@ export const AlbumsList = ({ user }) => {
 
   return (
     <>
-      <div>
-        Albums for {user.name}
+      <div className="flex flex-row m-2 justify-between items-center">
+        <h3 className="text-lg font-bold">Albums for {user.name}</h3>
         <Button onClick={onAddAlbum} loading={isAdding}>
           Add album
         </Button>
