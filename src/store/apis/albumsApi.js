@@ -19,6 +19,7 @@ export const albumsApi = createApi({
             },
           };
         },
+        invalidatesTags: ['Album'],
       }),
       fetchAlbums: builder.query({
         query: (user) => {
@@ -28,6 +29,7 @@ export const albumsApi = createApi({
             method: 'GET',
           };
         },
+        providesTags: ['Album'],
       }),
     };
   },
