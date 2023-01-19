@@ -6,9 +6,11 @@ import { ExpandablePanel } from './ExpandablePanel';
 export const AlbumListItem = ({ album }) => {
   const [deleteAlbum, { isLoading: isDeleting }] = useDeleteAlbumMutation();
 
+  const onDelete = () => deleteAlbum(album);
+  
   const header = (
     <div>
-      <Button>
+      <Button onClick={onDelete} loading={isDeleting}>
         <GoTrashcan />
       </Button>
       {album.title}
