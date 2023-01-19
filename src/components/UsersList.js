@@ -19,7 +19,7 @@ export const UsersList = () => {
 
   if (isLoadingUsers) return <Skeleton times={7} className="h-10 w-full" />;
 
-  if (loadingUsersError) return <div>{loadingUsersError}</div>;
+  if (loadingUsersError) return <div>Something went wrong</div>;
 
   const renderedUsers = data.map((user) => (
     <div key={user.id} className="mb-2 border rounded">
