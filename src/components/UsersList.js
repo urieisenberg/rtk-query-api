@@ -10,5 +10,9 @@ export const UsersList = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error</div>;
+
   return <></>;
 };
