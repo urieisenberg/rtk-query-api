@@ -25,6 +25,12 @@
       "id": 7
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "id": 578,
+      "title": "Whole Lotta Red",
+      "userId": 1
+    }
+  ],
   "photos": []
 }
