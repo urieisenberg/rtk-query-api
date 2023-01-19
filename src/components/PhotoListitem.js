@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export const PhotoListitem = () => {
+export const PhotoListitem = ({ photo }) => {
   return (
-    <div>PhotoListitem</div>
-  )
-}
+    <div>
+      <img className="h-2 w-20" src={photo.url} alt="random-faker-pic" />
+    </div>
+  );
+};
