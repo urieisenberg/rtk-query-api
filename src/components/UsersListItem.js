@@ -4,6 +4,7 @@ import { useThunk } from '../hooks/useThunk';
 import { GoTrashcan } from 'react-icons/go';
 import { Button } from './Button';
 import { ExpandablePanel } from './ExpandablePanel';
+import { AlbumsList } from './AlbumsList';
 
 export const UsersListItem = ({ user }) => {
   const [doDeleteUser, isLoading, error] = useThunk(deleteUser);
@@ -20,5 +21,9 @@ export const UsersListItem = ({ user }) => {
     </Fragment>
   );
 
-  return <ExpandablePanel header={header}>{user.email}</ExpandablePanel>;
+  return (
+    <ExpandablePanel header={header}>
+      <AlbumsList user={user} />
+    </ExpandablePanel>
+  );
 };
