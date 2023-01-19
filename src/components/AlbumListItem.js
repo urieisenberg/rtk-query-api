@@ -4,6 +4,8 @@ import { Button } from './Button';
 import { ExpandablePanel } from './ExpandablePanel';
 
 export const AlbumListItem = ({ album }) => {
+  const [deleteAlbum, { isLoading: isDeleting }] = useDeleteAlbumMutation();
+
   const header = (
     <div>
       <Button>
