@@ -1,5 +1,26 @@
 {
-  "users": [{ "id": 1, "name": "Playboi" }],
+  "users": [
+    {
+      "id": 1,
+      "name": "Playboi"
+    },
+    {
+      "name": "Dr. Mathew Reichert",
+      "id": 2
+    },
+    {
+      "name": "Kay McDermott",
+      "id": 3
+    },
+    {
+      "name": "Earl McDermott",
+      "id": 4
+    },
+    {
+      "name": "Geneva Jacobs",
+      "id": 5
+    }
+  ],
   "albums": [],
   "photos": []
 }
