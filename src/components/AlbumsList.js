@@ -1,16 +1,14 @@
-import {
-  useFetchAlbumsQuery,
-  useAddAlubmMutation} from '../store';
+import { useFetchAlbumsQuery, useAddAlubmMutation } from '../store';
 import { Skeleton } from './Skeleton';
 import { Button } from './Button';
 import { AlbumListItem } from './AlbumListItem';
 
 export const AlbumsList = ({ user }) => {
-  const { data, error, isLoading } = useFetchAlbumsQuery(user);
+  const { data, error, isFetching } = useFetchAlbumsQuery(user);
   const [addAlbum, { isLoading: isAdding }] = useAddAlubmMutation();
 
   let content;
-  if (isLoading) content = <Skeleton times={3} />;
+  if (isFetching) content = <Skeleton times={3} />;
   else if (error) content = <div>Something went wrong</div>;
   else if (data.length === 0) content = <div>No albums found</div>;
   else
