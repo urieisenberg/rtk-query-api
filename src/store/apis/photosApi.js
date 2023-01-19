@@ -16,6 +16,11 @@ export const photosApi = createApi({
             method: 'GET',
           };
         },
+        providesTags: (result, error, album) => {
+          const tags = result.map((photo) => ({ type: 'Photo', id: photo.id })); // add tags for each photo
+          tags.push({ type: 'AlbumsPhotos', id: album.id }); // add tag for the album's photos
+          return tags;
+        },
       }),
       addPhoto: builder.mutation({
         query: (album) => {
@@ -28,6 +33,9 @@ export const photosApi = createApi({
             },
           };
         },
+        invalidatesTags: (result, error, album) => [
+          { type: 'AlbumsPhotos', id: album.id },
+        ],
       }),
       deletePhoto: builder.mutation({
         query: (photo) => {
@@ -36,6 +44,9 @@ export const photosApi = createApi({
             method: 'DELETE',
           };
         },
+        invalidatesTags: (result, error, photo) => [
+          { type: 'Photo', id: photo.id },
+        ],
       }),
     };
   },
