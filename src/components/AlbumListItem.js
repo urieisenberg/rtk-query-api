@@ -7,14 +7,14 @@ export const AlbumListItem = ({ album }) => {
   const [deleteAlbum, { isLoading: isDeleting }] = useDeleteAlbumMutation();
 
   const onDelete = () => deleteAlbum(album);
-  
+
   const header = (
-    <div>
-      <Button onClick={onDelete} loading={isDeleting}>
+    <>
+      <Button onClick={onDelete} loading={isDeleting} className="mr-2">
         <GoTrashcan />
       </Button>
       {album.title}
-    </div>
+    </>
   );
 
   return (
