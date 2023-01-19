@@ -30,6 +30,9 @@ export const albumsApi = createApi({
             method: 'DELETE',
           };
         },
+        invalidatesTags: (result, error, album) => [
+          { type: 'Album', id: album.userId },
+        ],
       }),
       fetchAlbums: builder.query({
         query: (user) => {
@@ -45,4 +48,8 @@ export const albumsApi = createApi({
   },
 });
 
-export const { useFetchAlbumsQuery, useAddAlubmMutation, useDeleteAlbumMutation } = albumsApi;
+export const {
+  useFetchAlbumsQuery,
+  useAddAlubmMutation,
+  useDeleteAlbumMutation,
+} = albumsApi;
