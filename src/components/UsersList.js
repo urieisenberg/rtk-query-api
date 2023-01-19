@@ -15,5 +15,13 @@ export const UsersList = () => {
 
   if (error) return <div>Error</div>;
 
-  return <></>;
+  const renderedUsers = data.map((user) => (
+    <div key={user.id} className="mb-2 border rounded">
+      <div className="flex p-2 justify-between items-center cursor-pointer">
+        {user.name}
+      </div>
+    </div>
+  ));
+
+  return <>{renderedUsers}</>;
 };
