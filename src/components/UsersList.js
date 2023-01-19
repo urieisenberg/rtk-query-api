@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, addUser } from '../store';
 import { Skeleton } from './Skeleton';
 import { Button } from './Button';
 
 export const UsersList = () => {
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
+  const [loadingUsersError, setLoadingUsersError] = useState(null);
+  
   const dispatch = useDispatch();
   const { data, isLoading, error } = useSelector((state) => state.users);
 
@@ -13,7 +16,6 @@ export const UsersList = () => {
   }, [dispatch]);
 
   const onAddUser = () => dispatch(addUser());
-
 
   if (isLoading) return <Skeleton times={7} className="h-10 w-full" />;
 
