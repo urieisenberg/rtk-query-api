@@ -7,6 +7,8 @@ import { Button } from './Button';
 export const UsersList = () => {
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [loadingUsersError, setLoadingUsersError] = useState(null);
+  const [isCreatingUser, setIsCreatingUser] = useState(false);
+  const [creatingUserError, setCreatingUserError] = useState(null);
 
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.users);
@@ -19,7 +21,13 @@ export const UsersList = () => {
       .finally(() => setIsLoadingUsers(false)); // This will run regardless of the promise being fulfilled or rejected
   }, [dispatch]);
 
-  const onAddUser = () => dispatch(addUser());
+  const onAddUser = () => {
+    setIsCreatingUser(true);
+    dispatch(addUser())
+      .unwrap()
+      .catch((error) => setCreatingUserError(error.message))
+      .finally(() => setIsCreatingUser(false));
+  };
 
   if (isLoadingUsers) return <Skeleton times={7} className="h-10 w-full" />;
 
