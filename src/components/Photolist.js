@@ -26,7 +26,9 @@ export const Photolist = ({ album }) => {
           Add Photo
         </Button>
       </div>
-      <>{content}</>
+      <div className="mx-8 flex flex-row flex-wrap justify-centerd">
+        {content}
+      </div>
     </div>
   );
 };
